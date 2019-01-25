@@ -165,9 +165,7 @@ echo "$top_10_info"
 cur_user=`whoami`
 max_process=`ulimit -u`
 max_open_file=`ulimit -n`
-user_java_pid_ppid_list=`ps -o %p%P%c -u ${cur_user}|grep  java|grep -vE 'PID|^$'|awk '{print $1,$2}'`
-user_pid_list=`echo "$user_java_pid_ppid_list"|awk '{print $1}'|grep -v '^$'`
-user_ppid_list=`echo "$user_java_pid_ppid_list"|awk '{print $2}'|grep -v '^$'`
+
 
 # $1 =pid 
 print_pid_info(){
@@ -193,6 +191,9 @@ log "$java_thread_info"
 #prit=print col=collect coldum=col+dump_file
 
 choise_java_operate(){
+user_java_pid_ppid_list=`ps -o %p%P%c -u ${cur_user}|grep  java|grep -vE 'PID|^$'|awk '{print $1,$2}'`
+user_pid_list=`echo "$user_java_pid_ppid_list"|awk '{print $1}'|grep -v '^$'`
+user_ppid_list=`echo "$user_java_pid_ppid_list"|awk '{print $2}'|grep -v '^$'`
 for pid in $user_pid_list
 do
     local num=`echo "$user_ppid_list"|grep "^$pid$"|grep -v '^$'|wc -l`
