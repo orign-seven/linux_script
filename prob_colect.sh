@@ -232,13 +232,12 @@ cat <<EOF
 3.collect java information
 4.collect java information include dump file
 5.exit
-
+-----------------------------------
 Tips:
-disk threadshold ${disk_threshold:-80}
+disk threshold ${disk_threshold:-80}
 io util% threshold ${io_threshold:-50}
 tcp 连接情况根据local，forign,state分组统计结果日志：$log_file
 java information collect directory:$info_dir
-
 EOF
 echo -n "------------------------------------"
 echo -e "$default_color"
@@ -263,7 +262,7 @@ choise_java_operate 'coldum'
 ;;
 *)
     echo -e "${red_color}"
-    echo -n "Please choise number in 1-4"
+    echo -n "Please choise number"
     echo -ne "$default_color"
 ;;
 
