@@ -96,7 +96,6 @@ collect_info_dir
 # $1=pid $2==Y 获取dump文件默认不获取
 collect_java_info(){
     echo "collect PID:$1 java infomation wait .... "
-    echo "information directory:$info_dir"
     local time_suffix=$1-`date +'%Y%m%d%H%M%S'`
     local stack_log=${info_dir}/stack${time_suffix}.log
     local gc_log=${info_dir}/gc${time_suffix}.log
@@ -130,7 +129,7 @@ print_sys_info(){
 echo -e "$red_color"
 echo $seperate
 echo "磁盘信息，采用lvm的时候由于device过长导致无法获取use%，将无法评估磁盘情况"
-echo "tcp 连接情况根据local，forign,state分组统计结果日志：$log_file"
+echo ""
 echo $seperate
 echo -e "$default_color"
 # CPU，5分钟负载信息
@@ -209,12 +208,10 @@ do
 done
 }
 
-#choise_java_operate 'coldum'
 #-------菜单------------
-echo "system resource infomation will query one time"
-# default 80<Use% or IUse%>
-echo "disk threadshold ${disk_threshold:-80}"
-echo "io util% threshold ${io_threshold:-50}"
+echo "system resource infomation will query one time,that will spend minute"
+
+
 
 # 获取相关数据函数
 cpu_info
@@ -235,6 +232,13 @@ cat <<EOF
 3.collect java information
 4.collect java information include dump file
 5.exit
+
+Tips:
+disk threadshold ${disk_threshold:-80}
+io util% threshold ${io_threshold:-50}
+tcp 连接情况根据local，forign,state分组统计结果日志：$log_file
+java information collect directory:$info_dir
+
 EOF
 echo -n "------------------------------------"
 echo -e "$default_color"
