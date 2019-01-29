@@ -41,8 +41,8 @@ mem_info(){
 # disk_merge_info:Filesystem Use% IUse% Mounted
 # io_info: Device r/s w/s rsec/s wsec/s %util
 disk_info(){
-    local disk_space_info=`df -H|grep ^/dev|awk '{print $1,$5,$6}'`
-    local inode_info=`df -Hi|grep ^/dev|awk '{print $1,$5}'`
+    local disk_space_info=`df -PH|grep ^/dev|awk '{print $1,$5,$6}'`
+    local inode_info=`df -PHi|grep ^/dev|awk '{print $1,$5}'`
     io_info=`iostat -x|sed -n '7,$p'|awk '{print $1,$4,$5,$6,$7,$12'}`
 	# disk_space_info inode_info merge
     local tmp_file_name_space=1
