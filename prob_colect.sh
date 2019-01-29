@@ -69,7 +69,7 @@ disk_info(){
 tcp_info(){
     conn_info=`netstat -ntpa|grep -v 'LISTEN'| \
          awk '{print $4,$5,$6,$7}'|grep -P '^\d'`
-    analyze_tcp=`echo "${conn_info}"|awk -F '[: ]' '{arr[$1"|"$2"|"$3"|"$5"|"]++}END{for(i in arr)print i arr[i]}' |sort -t '|' -k 4 -nr`
+    analyze_tcp=`echo "${conn_info}"|awk -F '[: ]' '{arr[$1"|"$2"|"$3"|"$5"|"]++}END{for(i in arr)print i arr[i]}' |sort -t '|' -k 5 -nr`
 }
 
 # varialb: top_10_info 
