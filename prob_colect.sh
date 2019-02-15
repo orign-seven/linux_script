@@ -105,7 +105,7 @@ collect_java_info(){
     local jmap_hea_log=${info_dir}/jmap_heap${time_suffix}.log
     local thread_log=${info_dir}/java_thread${time_suffix}.log
     jstack $1 > $stack_log 2>&1
-    jstat -gcutil $1 1000 10 > $gc_log 2>&1
+    jstat -gc $1 1000 10 > $gc_log 2>&1
     jmap -histo:live $1 > $jmap_his_log 2>&1
     jmap -heap $1 > ${jmap_hea_log} 2>&1
     top -b -n 1 -H -p $1 > ${thread_log} 2>&1
